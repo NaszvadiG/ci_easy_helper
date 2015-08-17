@@ -11,6 +11,19 @@
 //==========================================Code Start=========================================//
 
 /**
+ * Welcome message
+ *
+ * @return string
+ */
+if ( ! function_exists('welcome'))
+{
+    function welcome()
+    {	
+    	echo 'Welcome to CI Easy Helper!';
+    }   
+}
+
+/**
  * Generate unique id
  *
  * @param  string  $prefix
