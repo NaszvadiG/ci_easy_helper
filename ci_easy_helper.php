@@ -48,13 +48,17 @@ if ( ! function_exists('unique_id'))
  * @return string
  */
 
+
 if ( ! function_exists('str_limit'))
 {
     function str_limit($string = null, $limit = null, $url = null, $url_text = null)
     {	
     	$limit = ($limit == null)? 120 : $limit;
-    	$url = ($url == null)? 'javascript:' : $url;
-    	$url_text = ($url_text == null)? 'Read more' : $url_text;
+    	$final_url = "";
+    	if(isset($url)){
+    		$url_text = ($url_text == null)? 'read more' : $url_text;
+    		$final_url = '<a href="http://'.$url.'">'.$url_text.'</a>';
+    	}
     	if($string == null){
     		echo "Require string as first argument, limit as second argument [optional, default 120], url as third argument[optional]";
     		return false;
@@ -68,11 +72,12 @@ if ( ! function_exists('str_limit'))
 		    $stringCut = substr($string, 0, $limit);
 
 		    // make sure it ends in a word so assassinate doesn't become ass...
-		    $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'... <a href="'.$url.'">'.$url_text.'</a>'; 
+		    $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...'.$final_url; 
 		}
 		echo $string;
     }   
 }
+
 
 
 /**
